@@ -8,4 +8,11 @@ describe Person do
     sean = Person.new(network)
   end
 
+  it "broadcasts shouts to the network" do
+    message = "Free bagels!"
+    sean = Person.new(network)
+    expect(network).to receive(:broadcast).with message
+    sean.shout message
+  end
+
 end
