@@ -4,4 +4,8 @@ class Person
 
   def shout(message)
   end
+
+  def messages_heard
+    []
+  end
 end
