@@ -18,8 +18,13 @@ end
 
 class Network
   def subscribe(listener)
+    @listeners ||= []
+    @listeners << listener
   end
 
   def broadcast(message)
+    @listeners.each do |listener|
+      listener.hear message
+    end
   end
 end
