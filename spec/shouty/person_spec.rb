@@ -15,4 +15,11 @@ describe Person do
     sean.shout message
   end
 
+  it "remembers messages heard" do
+    message = "Free bagels!"
+    lucy = Person.new(network)
+    lucy.hear(message)
+    expect(lucy.messages_heard).to eq [message]
+  end
+
 end
