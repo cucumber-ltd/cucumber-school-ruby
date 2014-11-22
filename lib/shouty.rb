@@ -1,7 +1,10 @@
 class Person
+  attr_reader :messages_heard
+
   def initialize(network)
     network.subscribe(self)
     @network = network
+    @messages_heard = []
   end
 
   def move_to(location)
@@ -11,9 +14,10 @@ class Person
     @network.broadcast(message)
   end
 
-  def messages_heard
-    ["Free bagels!"]
+  def hear(message)
+    messages_heard << message
   end
+
 end
 
 class Network
