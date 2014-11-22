@@ -15,3 +15,11 @@ class Person
     ["Free bagels!"]
   end
 end
+
+class Network
+  def subscribe(listener)
+  end
+
+  def broadcast(message)
+  end
+end
