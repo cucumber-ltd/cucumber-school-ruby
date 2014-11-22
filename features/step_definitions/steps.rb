@@ -1,8 +1,9 @@
 require 'shouty'
 
 Given(/^Lucy is (\d+)m from Sean$/) do |distance|
-  @lucy = Person.new
-  @sean = Person.new
+  network = Network.new
+  @lucy = Person.new(network)
+  @sean = Person.new(network)
   @lucy.move_to(distance)
 end
 
