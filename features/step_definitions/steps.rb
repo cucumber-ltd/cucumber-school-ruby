@@ -1,3 +1,5 @@
+require 'shouty'
+
 Given(/^Lucy is (\d+)m from Sean$/) do |distance|
   lucy = Person.new
   sean = Person.new
