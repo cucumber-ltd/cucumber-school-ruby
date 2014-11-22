@@ -1,4 +1,8 @@
 class Person
+  def initialize(network)
+    network.subscribe(self)
+  end
+
   def move_to(location)
   end
 
