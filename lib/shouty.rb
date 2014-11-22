@@ -6,6 +6,6 @@ class Person
   end
 
   def messages_heard
-    []
+    ["Free bagels!"]
   end
 end
