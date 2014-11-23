@@ -12,13 +12,6 @@ Given(/^a person named Sean$/) do
   @sean = Person.new(@network)
 end
 
-Given(/^Lucy is (\d+)m from Sean$/) do |distance|
-  network = Network.new
-  @lucy = Person.new(network)
-  @sean = Person.new(network)
-  @lucy.move_to(distance)
-end
-
 When(/^Sean shouts "(.*?)"$/) do |message|
   @sean.shout(message)
   @message_from_sean = message
