@@ -7,9 +7,6 @@ class Person
     @messages_heard = []
   end
 
-  def move_to(location)
-  end
-
   def shout(message)
     @network.broadcast(message)
   end
