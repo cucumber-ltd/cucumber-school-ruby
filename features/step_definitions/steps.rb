@@ -2,10 +2,11 @@ require 'shouty'
 
 Before do
   @network = Network.new
+  @people = {}
 end
 
 Given(/^a person named Lucy$/) do
-  @lucy = Person.new(@network)
+  @people['Lucy'] = Person.new(@network)
 end
 
 Given(/^a person named Sean$/) do
@@ -18,5 +19,5 @@ When(/^Sean shouts "(.*?)"$/) do |message|
 end
 
 Then(/^Lucy hears Sean's message$/) do
-  expect(@lucy.messages_heard).to include @message_from_sean
+  expect(@people['Lucy'].messages_heard).to include @message_from_sean
 end
