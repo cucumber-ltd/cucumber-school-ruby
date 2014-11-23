@@ -1,4 +1,4 @@
-Feature: Shouty
+Feature: Shout
 
   Scenario: Listener is within range
     Given Lucy is 15m from Sean
