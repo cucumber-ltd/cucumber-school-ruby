@@ -1,5 +1,17 @@
 require 'shouty'
 
+Before do
+  @network = Network.new
+end
+
+Given(/^a person named Lucy$/) do
+  @lucy = Person.new(@network)
+end
+
+Given(/^a person named Sean$/) do
+  @sean = Person.new(@network)
+end
+
 Given(/^Lucy is (\d+)m from Sean$/) do |distance|
   network = Network.new
   @lucy = Person.new(network)
