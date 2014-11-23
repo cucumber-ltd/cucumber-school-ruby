@@ -5,8 +5,8 @@ Before do
   @people = {}
 end
 
-Given(/^a person named Lucy$/) do
-  @people['Lucy'] = Person.new(@network)
+Given(/^a person named (\w+)$/) do |name|
+  @people[name] = Person.new(@network)
 end
 
 Given(/^a person named Sean$/) do
