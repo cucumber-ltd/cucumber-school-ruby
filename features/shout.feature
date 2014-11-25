@@ -11,7 +11,7 @@ Feature: Shout
   To do:
     - only shout to people within a certain distance
 
-  Scenario: Listener is within range
+  Scenario: Listener hears a message
     Given a person named Lucy
     And a person named Sean
     When Sean shouts "Free bagels!"
@@ -21,3 +21,7 @@ Feature: Shout
     Given Lucy is 15m from Sean
     When Sean shouts "Free coffee!"
     Then Lucy hears Sean's message
+
+  Scenario: Listener is within range
+
+  Scenario: Listener is out of range
