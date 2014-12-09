@@ -6,6 +6,7 @@ Feature: Shout
 
   Rules:
     - only shout to people within a certain distance
+    - people remember everything they've heard
 
   Background:
     Given the range is 100
