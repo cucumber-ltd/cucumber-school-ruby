@@ -13,14 +13,6 @@ Feature: Shout
     And a person named Sean at location 0
     And a person named Larry at location 150
 
-  Scenario: Listener hears a message
-    When Sean shouts "Free bagels!"
-    Then Lucy hears Sean's message
-
-  Scenario: Listener hears a different message
-    When Sean shouts "Free coffee!"
-    Then Lucy hears Sean's message
-
   Scenario: Listener is within range
     When Sean shouts "Free bagels!"
     Then Lucy hears Sean's message
