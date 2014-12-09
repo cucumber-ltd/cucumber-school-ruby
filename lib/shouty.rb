@@ -29,10 +29,10 @@ class Network
 
   def broadcast(message, shouter_location)
     @listeners.each do |listener|
-      if (listener.location - shouter_location).abs <= @range
-        if (message.length <= 180)
-          listener.hear message
-        end
+      within_range = (listener.location - shouter_location).abs <= @range
+      short_enough = message.length <= 180
+      if within_range && short_enough
+        listener.hear message
       end
     end
   end
