@@ -8,12 +8,12 @@ Given(/^the range is (\d+)$/) do |range|
   @network = Network.new(range.to_i)
 end
 
-Given(/^a person named (\w+) at location (\d+)$/) do |name, location|
-  @people[name] = Person.new(@network, location.to_i)
-end
-
 Given(/^the following people:$/) do |table|
-  puts table.hashes
+  table.hashes.each do |row|
+    name = row['name']
+    location = row['location'].to_i
+    @people[name] = Person.new(@network, location)
+  end
 end
 
 When(/^Sean shouts "(.*?)"$/) do |message|
