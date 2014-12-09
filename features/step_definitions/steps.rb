@@ -12,6 +12,10 @@ Given(/^a person named (\w+) at location (\d+)$/) do |name, location|
   @people[name] = Person.new(@network, location.to_i)
 end
 
+Given(/^the following people:$/) do |table|
+  puts table.raw
+end
+
 When(/^Sean shouts "(.*?)"$/) do |message|
   @people['Sean'].shout(message)
   @message_from_sean = message
