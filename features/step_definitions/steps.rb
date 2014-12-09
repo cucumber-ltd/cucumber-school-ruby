@@ -9,13 +9,14 @@ Given(/^the range is (\d+)$/) do |range|
 end
 
 Given(/^the following people:$/) do |table|
-  table = table.transpose
-  table = table.map_column('location') { |raw_location| raw_location.to_i }
-  table.hashes.each do |row|
-    name = row['name']
-    location = row['location']
-    @people[name] = Person.new(@network, location)
-  end
+  table
+    .transpose
+    .map_column('location') { |raw_location| raw_location.to_i }
+    .hashes.each do |row|
+      name = row['name']
+      location = row['location']
+      @people[name] = Person.new(@network, location)
+    end
 end
 
 When(/^Sean shouts "(.*?)"$/) do |message|
