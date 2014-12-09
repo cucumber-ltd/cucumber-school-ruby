@@ -31,5 +31,12 @@ Feature: Shout
       | Free toast!  |
 
   Scenario: Message is too long
-    When Sean shouts "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890x"
+    When Sean shouts:
+      """
+      This is a really long message
+      so long in fact that I am not going to
+      be allowed to send it, at least if I keep
+      typing like this until the length is over
+      the limit of 180 characters.
+      """
     Then nobody hears Sean's message
