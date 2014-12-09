@@ -26,5 +26,5 @@ Feature: Shout
     When Sean shouts "Free bagels!"
     And Sean shouts "Free toast!"
     Then Lucy hears the following messages:
-      | Free bagels |
-      | Free toast  |
+      | Free bagels! |
+      | Free toast   |
