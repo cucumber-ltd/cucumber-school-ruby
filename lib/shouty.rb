@@ -1,7 +1,7 @@
 class Person
   attr_reader :messages_heard
 
-  def initialize(network)
+  def initialize(network, location)
     network.subscribe(self)
     @network = network
     @messages_heard = []
@@ -18,6 +18,10 @@ class Person
 end
 
 class Network
+  def initialize(range)
+
+  end
+
   def subscribe(listener)
     @listeners ||= []
     @listeners << listener
