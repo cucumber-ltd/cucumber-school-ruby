@@ -7,6 +7,7 @@ Feature: Shout
   Rules:
     - only shout to people within a certain distance
     - people remember everything they've heard
+    - max length of message is 180 characters
 
   Background:
     Given the range is 100
@@ -28,3 +29,7 @@ Feature: Shout
     Then Lucy hears the following messages:
       | Free bagels! |
       | Free toast!  |
+
+  Scenario: Message is too long
+    When Sean shouts "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890x"
+    Then nobody hears Sean's message
