@@ -13,7 +13,7 @@ Given(/^a person named (\w+) at location (\d+)$/) do |name, location|
 end
 
 Given(/^the following people:$/) do |table|
-  puts table.raw
+  puts table.rows
 end
 
 When(/^Sean shouts "(.*?)"$/) do |message|
