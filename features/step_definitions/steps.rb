@@ -32,6 +32,12 @@ Then(/^Larry does not hear Sean's message$/) do
   expect(@people['Larry'].messages_heard).to_not include @message_from_sean
 end
 
+Then(/^nobody hears Sean's message$/) do
+  @people.values.each do |person|
+    expect(person.messages_heard).to_not include @message_from_sean
+  end
+end
+
 Then(/^Lucy hears the following messages:$/) do |expected_messages|
   lucy = @people['Lucy']
   actual_messages = lucy.messages_heard.map { |message| [ message ] }
