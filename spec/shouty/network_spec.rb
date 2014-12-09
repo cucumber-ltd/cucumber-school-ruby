@@ -30,4 +30,13 @@ describe Network do
     network.broadcast message, sally_location
   end
 
+  it "does not broadcast messages over 180 characters, even when the listener is within range" do
+    sean_location = 0
+    long_message = "x" * 181
+    lucy = double(location: 100)
+    network.subscribe(lucy)
+    expect(lucy).not_to receive(:hear)
+    network.broadcast long_message, sean_location
+  end
+
 end
