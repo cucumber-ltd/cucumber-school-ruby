@@ -9,9 +9,10 @@ Given(/^the range is (\d+)$/) do |range|
 end
 
 Given(/^the following people:$/) do |table|
+  table = table.map_column('location') { |raw_location| raw_location.to_i }
   table.hashes.each do |row|
     name = row['name']
-    location = row['location'].to_i
+    location = row['location']
     @people[name] = Person.new(@network, location)
   end
 end
