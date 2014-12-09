@@ -9,6 +9,7 @@ Given(/^the range is (\d+)$/) do |range|
 end
 
 Given(/^the following people:$/) do |table|
+  table = table.transpose
   table = table.map_column('location') { |raw_location| raw_location.to_i }
   table.hashes.each do |row|
     name = row['name']

@@ -10,10 +10,8 @@ Feature: Shout
   Background:
     Given the range is 100
     And the following people:
-      | name  | location |
-      | Lucy  |      100 |
-      | Sean  |        0 |
-      | Larry |      150 |
+      | name     | Sean | Lucy | Larry |
+      | location | 0    | 100  | 150   |
 
   Scenario: Listener is within range
     When Sean shouts "Free bagels!"
