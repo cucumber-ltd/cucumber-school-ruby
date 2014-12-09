@@ -1,14 +1,14 @@
 class Person
-  attr_reader :messages_heard
+  attr_reader :messages_heard, :location
 
-  def initialize(network)
+  def initialize(network, location)
     network.subscribe(self)
-    @network = network
+    @network, @location = network, location
     @messages_heard = []
   end
 
   def shout(message)
-    @network.broadcast(message)
+    @network.broadcast(message, @location)
   end
 
   def hear(message)
@@ -18,14 +18,21 @@ class Person
 end
 
 class Network
+  def initialize(range)
+    @range = range
+  end
+
   def subscribe(listener)
     @listeners ||= []
     @listeners << listener
   end
 
-  def broadcast(message)
+  def broadcast(message, shouter_location)
     @listeners.each do |listener|
-      listener.hear message
+      if (listener.location - shouter_location).abs <= @range
+        listener.hear message
+      end
     end
   end
+
 end
