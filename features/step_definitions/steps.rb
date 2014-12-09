@@ -31,3 +31,9 @@ end
 Then(/^Larry does not hear Sean's message$/) do
   expect(@people['Larry'].messages_heard).to_not include @message_from_sean
 end
+
+Then(/^Lucy hears the following messages:$/) do |expected_messages|
+  lucy = @people['Lucy']
+  actual_messages = lucy.messages_heard.map { |message| [ message ] }
+  expected_messages.diff!(actual_messages)
+end
