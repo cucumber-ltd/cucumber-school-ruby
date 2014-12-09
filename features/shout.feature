@@ -9,9 +9,11 @@ Feature: Shout
 
   Background:
     Given the range is 100
-    And a person named Lucy at location 100
-    And a person named Sean at location 0
-    And a person named Larry at location 150
+    And the following people:
+      | name  | location |
+      | Lucy  |      100 |
+      | Sean  |        0 |
+      | Larry |      150 |
 
   Scenario: Listener is within range
     When Sean shouts "Free bagels!"
