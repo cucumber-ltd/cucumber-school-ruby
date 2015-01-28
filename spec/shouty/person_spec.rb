@@ -17,8 +17,7 @@ describe Person do
 
   it "broadcasts shouts to the network" do
     message = "Free bagels!"
-    sean_location = 0
-    expect(network).to receive(:broadcast).with message, sean_location
+    expect(network).to receive(:broadcast).with message, sean
     sean.shout message
   end
 
