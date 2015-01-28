@@ -10,7 +10,7 @@ Feature: Premium account
       | name     | Sean | Lucy |
       | location | 0    | 100  |
 
-  Scenario: Test premium account features
+  Scenario: Shout over-long and use the word "buy" several times
     Given Sean has bought 30 credits
     When Sean shouts 2 over-long messages
     And Sean shouts 3 messages containing the word "buy"
