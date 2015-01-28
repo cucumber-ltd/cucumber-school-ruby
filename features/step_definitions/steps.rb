@@ -1,5 +1,4 @@
 Before do
-  @people = {}
   @messages_shouted_by = {}
 end
 
@@ -14,7 +13,7 @@ Given(/^the following people:$/) do |table|
     .hashes.each do |row|
       name = row['name']
       location = row['location']
-      @people[name] = Person.new(@network, location)
+      people[name] = Person.new(@network, location)
     end
 end
 
@@ -55,41 +54,41 @@ When(/^Sean shouts:$/) do |message|
 end
 
 Then(/^Lucy hears Sean's message$/) do
-  expect(@people['Lucy'].messages_heard).to include @messages_shouted_by['Sean'].last
+  expect(people['Lucy'].messages_heard).to include @messages_shouted_by['Sean'].last
 end
 
 Then(/^Larry does not hear Sean's message$/) do
-  expect(@people['Larry'].messages_heard).to_not include @messages_shouted_by['Sean'].last
+  expect(people['Larry'].messages_heard).to_not include @messages_shouted_by['Sean'].last
 end
 
 Then(/^nobody hears Sean's message$/) do
-  @people.values.each do |person|
+  people.values.each do |person|
     expect(person.messages_heard).to_not include @messages_shouted_by['Sean'].last
   end
 end
 
 Then(/^Lucy hears the following messages:$/) do |expected_messages|
-  lucy = @people['Lucy']
+  lucy = people['Lucy']
   actual_messages = lucy.messages_heard.map { |message| [ message ] }
   expected_messages.diff!(actual_messages)
 end
 
 Given(/^Sean has bought (\d+) credits$/) do |credits|
-  @people['Sean'].credits = credits.to_i
+  people['Sean'].credits = credits.to_i
 end
 
 Then(/^Larry hears both Sean's messages$/) do
   @messages_shouted_by['Sean'].each do |message|
-    expect(@people['Larry'].messages_heard).to include message
+    expect(people['Larry'].messages_heard).to include message
   end
 end
 
 Then(/^Lucy hears all Sean's messages$/) do
   @messages_shouted_by['Sean'].each do |message|
-    expect(@people['Lucy'].messages_heard).to include message
+    expect(people['Lucy'].messages_heard).to include message
   end
 end
 
 Then(/^Sean should have (\d+) credits$/) do |expected_credits|
-  expect(@people['Sean'].credits).to eq expected_credits.to_i
+  expect(people['Sean'].credits).to eq expected_credits.to_i
 end
