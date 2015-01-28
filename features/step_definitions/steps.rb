@@ -27,6 +27,13 @@ When(/^Sean shouts a message containing the word "(.*?)"$/) do |word|
   @messages_shouted_by['Sean'] << message
 end
 
+When(/^Sean shouts a message$/) do
+  message = "here is a message"
+  @people['Sean'].shout(message)
+  @messages_shouted_by['Sean'] ||= []
+  @messages_shouted_by['Sean'] << message
+end
+
 When(/^Sean shouts "(.*?)"$/) do |message|
   @people['Sean'].shout(message)
   @messages_shouted_by['Sean'] ||= []
