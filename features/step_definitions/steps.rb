@@ -20,6 +20,15 @@ Given(/^the following people:$/) do |table|
     end
 end
 
+When(/^Sean shouts (\d+) over\-long messages$/) do |num|
+  num.to_i.times do
+    message = "x" * 181
+    @people['Sean'].shout(message)
+    @messages_shouted_by['Sean'] ||= []
+    @messages_shouted_by['Sean'] << message
+  end
+end
+
 When(/^Sean shouts an over\-long message$/) do
   message = "x" * 181
   @people['Sean'].shout(message)
