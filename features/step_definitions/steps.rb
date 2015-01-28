@@ -1,5 +1,3 @@
-require 'shouty'
-
 Before do
   @people = {}
   @messages_shouted_by = {}
