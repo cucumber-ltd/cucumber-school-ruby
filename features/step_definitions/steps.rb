@@ -20,10 +20,7 @@ end
 
 When(/^Sean shouts (\d+) messages containing the word "(.*?)"$/) do |num, word|
   num.to_i.times do
-    message = "here is a message containing the word #{word}"
-    @people['Sean'].shout(message)
-    @messages_shouted_by['Sean'] ||= []
-    @messages_shouted_by['Sean'] << message
+    sean_shout "here is a message containing the word #{word}"
   end
 end
 
