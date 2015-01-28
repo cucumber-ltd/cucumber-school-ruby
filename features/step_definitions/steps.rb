@@ -26,51 +26,32 @@ end
 
 When(/^Sean shouts (\d+) over\-long messages$/) do |num|
   num.to_i.times do
-    message = "x" * 181
-    @people['Sean'].shout(message)
-    @messages_shouted_by['Sean'] ||= []
-    @messages_shouted_by['Sean'] << message
+    sean_shout "x" * 181
   end
 end
 
 When(/^Sean shouts an over\-long message$/) do
-  message = "x" * 181
-  @people['Sean'].shout(message)
-  @messages_shouted_by['Sean'] ||= []
-  @messages_shouted_by['Sean'] << message
+  sean_shout "x" * 181
 end
 
 When(/^Sean shouts a long message$/) do
-  message = "x" * 180
-  @people['Sean'].shout(message)
-  @messages_shouted_by['Sean'] ||= []
-  @messages_shouted_by['Sean'] << message
+  sean_shout "x" * 180
 end
 
 When(/^Sean shouts a message containing the word "(.*?)"$/) do |word|
-  message = "here is a message containing the word #{word}"
-  @people['Sean'].shout(message)
-  @messages_shouted_by['Sean'] ||= []
-  @messages_shouted_by['Sean'] << message
+  sean_shout "here is a message containing the word #{word}"
 end
 
 When(/^Sean shouts a message$/) do
-  message = "here is a message"
-  @people['Sean'].shout(message)
-  @messages_shouted_by['Sean'] ||= []
-  @messages_shouted_by['Sean'] << message
+  sean_shout "here is a message"
 end
 
 When(/^Sean shouts "(.*?)"$/) do |message|
-  @people['Sean'].shout(message)
-  @messages_shouted_by['Sean'] ||= []
-  @messages_shouted_by['Sean'] << message
+  sean_shout message
 end
 
 When(/^Sean shouts:$/) do |message|
-  @people['Sean'].shout(message)
-  @messages_shouted_by['Sean'] ||= []
-  @messages_shouted_by['Sean'] << message
+  sean_shout message
 end
 
 Then(/^Lucy hears Sean's message$/) do
