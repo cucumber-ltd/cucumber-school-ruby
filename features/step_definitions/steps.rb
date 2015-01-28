@@ -1,7 +1,3 @@
-Before do
-  @messages_shouted_by = {}
-end
-
 Given(/^the range is (\d+)$/) do |range|
   @network = Network.new(range.to_i)
 end
@@ -54,16 +50,16 @@ When(/^Sean shouts:$/) do |message|
 end
 
 Then(/^Lucy hears Sean's message$/) do
-  expect(people['Lucy'].messages_heard).to include @messages_shouted_by['Sean'].last
+  expect(people['Lucy'].messages_heard).to include messages_shouted_by['Sean'].last
 end
 
 Then(/^Larry does not hear Sean's message$/) do
-  expect(people['Larry'].messages_heard).to_not include @messages_shouted_by['Sean'].last
+  expect(people['Larry'].messages_heard).to_not include messages_shouted_by['Sean'].last
 end
 
 Then(/^nobody hears Sean's message$/) do
   people.values.each do |person|
-    expect(person.messages_heard).to_not include @messages_shouted_by['Sean'].last
+    expect(person.messages_heard).to_not include messages_shouted_by['Sean'].last
   end
 end
 
@@ -78,13 +74,13 @@ Given(/^Sean has bought (\d+) credits$/) do |credits|
 end
 
 Then(/^Larry hears both Sean's messages$/) do
-  @messages_shouted_by['Sean'].each do |message|
+  messages_shouted_by['Sean'].each do |message|
     expect(people['Larry'].messages_heard).to include message
   end
 end
 
 Then(/^Lucy hears all Sean's messages$/) do
-  @messages_shouted_by['Sean'].each do |message|
+  messages_shouted_by['Sean'].each do |message|
     expect(people['Lucy'].messages_heard).to include message
   end
 end
