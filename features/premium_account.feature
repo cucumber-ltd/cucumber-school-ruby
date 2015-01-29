@@ -2,7 +2,7 @@ Feature: Premium account
 
   Rules:
     - mention the word "buy" and you lose 5 credits
-    - long messages cost 2 credits
+    - over-long messages cost 2 credits
 
   Background:
     Given the range is 100
