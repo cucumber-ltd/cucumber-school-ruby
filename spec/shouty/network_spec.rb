@@ -39,4 +39,10 @@ describe Network do
     network.broadcast long_message, sean
   end
 
+  it "deducts 5 credits when the shouter mentions the word 'buy'" do
+    sean = double(location: 0, credits: 100)
+    expect(sean).to receive(:credits=).with(95)
+    network.broadcast "here is a message containing the word buy", sean
+  end
+
 end
