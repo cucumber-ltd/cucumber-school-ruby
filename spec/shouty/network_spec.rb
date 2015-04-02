@@ -41,8 +41,6 @@ describe Network do
 
   it "deducts 5 credits when the shouter mentions the word 'buy'" do
     sean = double(location: 0, credits: 100)
-    lucy = double(location: 100, hear: nil)
-    network.subscribe(lucy)
     expect(sean).to receive(:credits=).with(95)
     network.broadcast "here is a message containing the word buy", sean
   end
