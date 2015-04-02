@@ -22,10 +22,10 @@ end
 class Network
   def initialize(range)
     @range = range
+    @listeners = []
   end
 
   def subscribe(listener)
-    @listeners ||= []
     @listeners << listener
   end
 
