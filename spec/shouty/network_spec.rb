@@ -47,4 +47,9 @@ describe Network do
     network.broadcast "here is a message containing the word buy", sean
   end
 
+  it "does not error when broadcasting with nobody subscribed" do
+    sean = double(location: 0, credits: 100)
+    expect { network.broadcast message, sean }.not_to raise_error
+  end
+
 end
