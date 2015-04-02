@@ -39,6 +39,8 @@ describe Network do
         expect { network.broadcast message, sean }.not_to raise_error
       end
 
+      it "does not broadcast messsages over 180 characters when the shouter cannot afford to pay"
+
     end
 
     describe "charging for shouts" do
@@ -48,6 +50,8 @@ describe Network do
         expect(sean).to receive(:credits=).with(95)
         network.broadcast "here is a message containing the word buy", sean
       end
+
+      it "deducts 2 credts when the shouter's message is over 180 characters"
 
     end
 
