@@ -6,28 +6,51 @@ describe Network do
   let(:range) { 100 }
   let(:message) { "Free bagels!" }
 
-  it "broadcasts a message to a listener within range" do
-    sean = double(location: 0)
-    lucy = double(location: 100)
-    network.subscribe(lucy)
-    expect(lucy).to receive(:hear).with(message)
-    network.broadcast message, sean
-  end
+  describe "#broadcast" do
 
-  it "does not broadcast a message to a listener out of range" do
-    sean = double(location: 0)
-    laura = double(location: 101)
-    network.subscribe(laura)
-    expect(laura).not_to receive(:hear).with(message)
-    network.broadcast message, sean
-  end
+    describe "broadcasting to listeners" do
 
-  it "does not broadcast a message to a listener our of range (negative distance)" do
-    sally = double(location: 101)
-    lionel = double(location: 0)
-    network.subscribe(lionel)
-    expect(lionel).not_to receive(:hear).with(message)
-    network.broadcast message, sally
+      it "broadcasts a message to a listener within range" do
+        sean = double(location: 0)
+        lucy = double(location: 100)
+        network.subscribe(lucy)
+        expect(lucy).to receive(:hear).with(message)
+        network.broadcast message, sean
+      end
+
+      it "does not broadcast a message to a listener out of range" do
+        sean = double(location: 0)
+        laura = double(location: 101)
+        network.subscribe(laura)
+        expect(laura).not_to receive(:hear).with(message)
+        network.broadcast message, sean
+      end
+
+      it "does not broadcast a message to a listener our of range (negative distance)" do
+        sally = double(location: 101)
+        lionel = double(location: 0)
+        network.subscribe(lionel)
+        expect(lionel).not_to receive(:hear).with(message)
+        network.broadcast message, sally
+      end
+
+      it "does not error when broadcasting with nobody subscribed" do
+        sean = double(location: 0, credits: 100)
+        expect { network.broadcast message, sean }.not_to raise_error
+      end
+
+    end
+
+    describe "charging for shouts" do
+
+      it "deducts 5 credits when the shouter mentions the word 'buy'" do
+        sean = double(location: 0, credits: 100)
+        expect(sean).to receive(:credits=).with(95)
+        network.broadcast "here is a message containing the word buy", sean
+      end
+
+    end
+
   end
 
   it "does not broadcast messages over 180 characters, even when the listener is within range" do
@@ -37,17 +60,6 @@ describe Network do
     network.subscribe(lucy)
     expect(lucy).not_to receive(:hear)
     network.broadcast long_message, sean
-  end
-
-  it "deducts 5 credits when the shouter mentions the word 'buy'" do
-    sean = double(location: 0, credits: 100)
-    expect(sean).to receive(:credits=).with(95)
-    network.broadcast "here is a message containing the word buy", sean
-  end
-
-  it "does not error when broadcasting with nobody subscribed" do
-    sean = double(location: 0, credits: 100)
-    expect { network.broadcast message, sean }.not_to raise_error
   end
 
 end
