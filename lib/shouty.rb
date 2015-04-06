@@ -10,8 +10,7 @@ class Person
   end
 
   def shout(message)
-    short_enough = message.length <= 180
-    deduct_credits(short_enough, message)
+    deduct_credits(message)
     @network.broadcast(message, self)
   end
 
@@ -21,8 +20,10 @@ class Person
 
   private
 
-  def deduct_credits(short_enough, message)
-    @credits -= 2 if !short_enough
+  def deduct_credits(message)
+    if message.length > 180
+      @credits -= 2
+    end
     message.scan(/buy/i).each do
       @credits -= 5
     end
