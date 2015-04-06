@@ -11,7 +11,7 @@ class Person
 
   def shout(message)
     short_enough = message.length <= 180
-    deduct_credits(short_enough, message, self)
+    deduct_credits(short_enough, message)
     @network.broadcast(message, self)
   end
 
@@ -19,10 +19,12 @@ class Person
     messages_heard << message
   end
 
-  def deduct_credits(short_enough, message, shouter)
-    shouter.credits -= 2 if !short_enough
+  private
+
+  def deduct_credits(short_enough, message)
+    @credits -= 2 if !short_enough
     message.scan(/buy/i).each do
-      shouter.credits -= 5
+      @credits -= 5
     end
   end
 
