@@ -38,9 +38,13 @@ describe Person do
       expect(sean.credits).to eq 95
     end
 
-    it "deducts 2 credts when the shouter's message is over 180 characters"
+    it "deducts 2 credts when the shouter's message is over 180 characters" do
+      sean = Person.new(network, 0)
+      sean.credits = 100
+      sean.shout "x" * 181
+      expect(sean.credits).to eq 98
+    end
 
   end
-
 
 end
