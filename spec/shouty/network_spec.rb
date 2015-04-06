@@ -43,18 +43,6 @@ describe Network do
 
     end
 
-    describe "charging for shouts" do
-
-      it "deducts 5 credits when the shouter mentions the word 'buy'" do
-        sean = double(location: 0, credits: 100)
-        expect(sean).to receive(:credits=).with(95)
-        network.broadcast "here is a message containing the word buy", sean
-      end
-
-      it "deducts 2 credts when the shouter's message is over 180 characters"
-
-    end
-
   end
 
   xit "does not broadcast messages over 180 characters, even when the listener is within range" do
