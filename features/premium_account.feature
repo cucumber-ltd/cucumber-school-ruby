@@ -4,9 +4,7 @@ Feature: Premium account
     - mention the word "buy" and you lose 5 credits per shout
     - over-long messages cost 2 credits
     - you can't send a premium shout unless you have enough credits
-
-  Questions:
-    - what happens if you shout a too-long message with the word "buy"?
+    - charge 7 credits for over-long messages that contain "buy"
 
   Background:
     Given the range is 100
@@ -36,3 +34,9 @@ Feature: Premium account
     When Sean shouts a message containing the word "buy"
     Then Lucy does not hear Sean's message
     And Sean should have 4 credits
+
+  Scenario: Over-long message containing "buy"
+    Given Sean has bought 100 credits
+    When Sean shouts an over-long message containing the word "buy"
+    Then Lucy hears all Sean's messages
+    And Sean should have 93 credits
