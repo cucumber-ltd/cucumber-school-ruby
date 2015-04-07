@@ -38,6 +38,13 @@ describe Person do
       expect(sean.credits).to eq 95
     end
 
+    it "only charges once per shout for multiple mentions of 'buy'" do
+      sean = Person.new(network, 0)
+      sean.credits = 100
+      sean.shout "buy buy buy"
+      expect(sean.credits).to eq 95
+    end
+
     it "deducts 2 credts when the shouter's message is over 180 characters" do
       sean = Person.new(network, 0)
       sean.credits = 100
