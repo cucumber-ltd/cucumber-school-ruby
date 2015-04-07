@@ -25,6 +25,10 @@ When(/^Sean shouts (\d+) over\-long messages$/) do |num|
   end
 end
 
+When(/^Sean shouts an over\-long message containing the word "(.*?)"$/) do |word|
+  sean_shout "x" * 181 + word
+end
+
 When(/^Sean shouts an over\-long message$/) do
   sean_shout "x" * 181
 end
