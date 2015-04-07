@@ -34,7 +34,7 @@ class Person
     if message.length > 180
       result += 2
     end
-    message.scan(/buy/i).each do
+    if message.match(/buy/i)
       result += 5
     end
     result
