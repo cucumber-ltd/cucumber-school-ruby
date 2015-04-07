@@ -53,12 +53,16 @@ class Network
   end
 
   def broadcast(message, shouter)
-    shouter_location = shouter.location
-    @listeners.each do |listener|
-      within_range = (listener.location - shouter_location).abs <= @range
-      if within_range
-        listener.hear message
-      end
+    listeners_within_range_of(shouter).each do |listener|
+      listener.hear message
+    end
+  end
+
+  private
+
+  def listeners_within_range_of(shouter)
+    @listeners.select do |listener|
+      (listener.location - shouter.location).abs <= @range
     end
   end
 
