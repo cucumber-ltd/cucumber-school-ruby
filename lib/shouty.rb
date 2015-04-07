@@ -34,7 +34,7 @@ class Person
     if message.length > 180
       cost += 2
     end
-    message.scan(/buy/i).each do
+    if message.match(/buy/i)
       cost += 5
     end
     cost
