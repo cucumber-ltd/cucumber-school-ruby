@@ -10,6 +10,7 @@ class Person
   end
 
   def shout(message)
+    return unless can_afford?(message)
     deduct_credits(message)
     @network.broadcast(message, self)
   end
@@ -21,12 +22,22 @@ class Person
   private
 
   def deduct_credits(message)
+    @credits -= cost_of(message)
+  end
+
+  def can_afford?(message)
+    cost_of(message) <= @credits
+  end
+
+  def cost_of(message)
+    result = 0
     if message.length > 180
-      @credits -= 2
+      result += 2
     end
     message.scan(/buy/i).each do
-      @credits -= 5
+      result += 5
     end
+    result
   end
 
 end
