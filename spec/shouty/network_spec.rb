@@ -39,8 +39,6 @@ describe Network do
         expect { network.broadcast message, sean }.not_to raise_error
       end
 
-      it "does not broadcast messsages over 180 characters when the shouter cannot afford to pay"
-
     end
 
   end
