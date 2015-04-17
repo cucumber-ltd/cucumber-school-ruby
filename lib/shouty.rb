@@ -10,6 +10,7 @@ class Person
   end
 
   def shout(message)
+    return unless can_afford?(message)
     deduct_credits(message)
     @network.broadcast(message, self)
   end
@@ -19,6 +20,10 @@ class Person
   end
 
   private
+
+  def can_afford?(message)
+    cost_of(message) <= @credits
+  end
 
   def deduct_credits(message)
     @credits -= cost_of(message)
