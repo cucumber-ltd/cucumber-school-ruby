@@ -21,6 +21,10 @@ class Person
   private
 
   def deduct_credits(message)
+    @credits -= cost_of(message)
+  end
+
+  def cost_of(message)
     cost = 0
     if message.length > 180
       cost += 2
@@ -28,7 +32,7 @@ class Person
     message.scan(/buy/i).each do
       cost += 5
     end
-    @credits -= cost
+    cost
   end
 
 end
