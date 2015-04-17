@@ -39,4 +39,10 @@ describe Network do
     network.broadcast long_message, sean
   end
 
+  it "deducts 5 credits when the shouter mentions the word 'buy'" do
+    sean = Person.new(network, 0)
+    sean.credits = 100
+    network.broadcast "here is a message containing the word buy", sean
+    expect(sean.credits).to eq 95
+  end
 end
