@@ -47,4 +47,14 @@ describe Person do
 
   end
 
+  describe "broadcasting shouts" do
+
+    it "does not broadcast messages over 180 characters when the shouter has insufficient credits" do
+      sean = Person.new(network, 0)
+      sean.credits = 1
+      expect(network).not_to receive(:broadcast)
+      sean.shout "x" * 181
+    end
+  end
+
 end
