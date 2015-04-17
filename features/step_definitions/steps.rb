@@ -53,8 +53,8 @@ Then(/^Lucy hears Sean's message$/) do
   expect(people['Lucy'].messages_heard).to include messages_shouted_by['Sean'].last
 end
 
-Then(/^Larry does not hear Sean's message$/) do
-  expect(people['Larry'].messages_heard).to_not include messages_shouted_by['Sean'].last
+Then(/^(Larry|Lucy) does not hear Sean's message$/) do |listener_name|
+  expect(people[listener_name].messages_heard).to_not include messages_shouted_by['Sean'].last
 end
 
 Then(/^nobody hears Sean's message$/) do
