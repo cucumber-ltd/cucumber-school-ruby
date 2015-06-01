@@ -1,5 +1,4 @@
 module DomainWorld
-
   def people
     @people ||= {}
   end
@@ -13,7 +12,6 @@ module DomainWorld
     messages_shouted_by['Sean'] ||= []
     messages_shouted_by['Sean'] << message
   end
-
 end
 
 module WebWorld
@@ -36,7 +34,7 @@ module WebWorld
   private
 
   def log_in_as(name)
-    warn "TODO: implement log_in_as"
+    visit "/?name=#{name}"
   end
 
   def shout(message)
@@ -45,6 +43,11 @@ module WebWorld
 end
 
 if ENV['shouty_test_depth'] == "web"
+  require 'capybara/cucumber'
+  Capybara.default_driver = :selenium
+  Before do
+    Capybara.app = WebApp.new(nil, people)
+  end
   World(WebWorld)
 else
   World(DomainWorld)

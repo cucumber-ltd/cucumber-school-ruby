@@ -1,4 +1,4 @@
-require 'shouty'
+require 'shouty/core'
 
 describe Network do
 

@@ -1,4 +1,4 @@
-require 'shouty'
+require 'shouty/core'
 
 describe Person do
   let(:sean) { Person.new(network, 0) }
