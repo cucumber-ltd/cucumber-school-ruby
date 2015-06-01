@@ -38,7 +38,8 @@ module WebWorld
   end
 
   def shout(message)
-    warn "TODO: implement shout"
+    fill_in('Message', with: message)
+    click_button 'Shout'
   end
 end
 
