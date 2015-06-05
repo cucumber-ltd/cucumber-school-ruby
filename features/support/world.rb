@@ -7,6 +7,10 @@ module DomainWorld
     @messages_shouted_by ||= {}
   end
 
+  def messages_heard_by(name)
+    people[name].messages_heard
+  end
+
   def sean_shout(message)
     people['Sean'].shout(message)
     messages_shouted_by['Sean'] ||= []

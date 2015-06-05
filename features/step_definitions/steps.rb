@@ -54,7 +54,7 @@ When(/^Sean shouts:$/) do |message|
 end
 
 Then(/^Lucy hears Sean's message$/) do
-  expect(people['Lucy'].messages_heard).to include messages_shouted_by['Sean'].last
+  expect(messages_heard_by('Lucy')).to include messages_shouted_by['Sean'].last
 end
 
 Then(/^(Larry|Lucy) does not hear Sean's message$/) do |listener_name|
