@@ -8,7 +8,7 @@ describe WebApp do
 
   let(:app) { WebApp.new(nil, people) }
   let(:people) { { 'Sean' => sean } }
-  let(:sean) { double }
+  let(:sean) { double(messages_heard: []) }
   let(:page) { Capybara.string(last_response.body) }
 
   describe "GET /" do
@@ -28,6 +28,13 @@ describe WebApp do
       get '/?name=Sean'
       expect(page).to have_css('form [name=message]')
       expect(page).to have_css('form [type=submit]')
+    end
+
+    it "displays the messages heard by the user" do
+      people['Lucy'] = double(messages_heard: ['one', 'two'])
+      get '/?name=Lucy'
+      expect(page).to have_css('.message', text: /one/)
+      expect(page).to have_css('.message', text: /two/)
     end
   end
 
