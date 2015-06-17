@@ -13,7 +13,11 @@ class WebApp < Sinatra::Application
   end
 
   get "/" do
-    erb :index, { locals: { person_name: params['name'] } }
+    messages_heard = @people[params['name']].messages_heard
+    erb :index, { locals: {
+      person_name: params['name'],
+      messages_heard: messages_heard }
+    }
   end
 
   post "/shouts" do

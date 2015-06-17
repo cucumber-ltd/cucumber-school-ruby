@@ -10,7 +10,9 @@
       <button type=submit>Shout</button>
     </form>
     <ul>
-      <li class="message">test</li>
+      <% messages_heard.each do |message| %>
+        <li class="message"><%= message %></li>
+      <% end %>
     </ul>
   </body>
 </html>
