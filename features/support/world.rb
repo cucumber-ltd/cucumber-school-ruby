@@ -28,6 +28,11 @@ module WebWorld
     @messages_shouted_by ||= {}
   end
 
+  def messages_heard_by(name)
+    log_in_as name
+    all(".message").map { |node| node.text }
+  end
+
   def sean_shout(message)
     log_in_as 'Sean'
     shout message
