@@ -1,6 +1,9 @@
+require 'shouty'
+
 Given("Lucy is located {int}m from Sean") do |distance|
-  puts distance
-  pending # Write code here that turns the phrase above into concrete actions
+  @lucy = Shouty::Person.new
+  @sean = Shouty::Person.new
+  @lucy.move_to(distance)
 end
 
 When("Sean shouts {string}") do |string|
